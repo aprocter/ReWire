@@ -18,16 +18,19 @@ data FunDefn = FunDefn { defnName   :: Ident
 
 type Ident = String
 
-data Expr = Yield Ident [Expr]
+data Prim = PrimFIXME deriving Show
+
+data Expr = Yield Expr Ident [Expr]
           | Terminate Expr
           | Let Ident Expr Expr
-          | Input
           | BitConst Bit
           | BitVectorConst [Bit]
           | BitVectorSlice Expr Int Int
+          | BitVectorSelect Expr Int
           | Primitive Prim [Expr]
-          | FunCall Ident [Expr]
+          | FunVarCall Ident [Expr]
           | IfThenElse Expr Expr Expr
           deriving Show
 
 data Bit = Zero | One
+           deriving Show
